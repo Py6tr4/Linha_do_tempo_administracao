@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    </div>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta author content="Pyetro de Lima Lisboa Silva">
+    <title>Nikola Tesla</title>
+</head>
+
+<body>
+    <table>
+        <tr>
+            </svg>
+            <td>
+                <div class="foto">
+                    <img src="/teste/photos/18krl/O melhor cientista do mundo.jpg" alt="nikola tesla">
+                </div>
+            </td>
+            <td class="coluna-direita">
+                <div class="bloco">
+                    <p>
+                        Você sabia que quase tudo que usamos hoje – como energia elétrica, controle remoto, rádio e até
+                        Wi-Fi – tem a ver com um homem chamado "Nikola Tesla"? Ele nasceu em 1856 e, desde cedo, já era
+                        considerado um "gênio incompreendido".Ao chegar aos Estados Unidos, trabalhou com Thomas Edison,
+                        mas logo seguiu seu próprio caminho. Tesla acreditava que a eletricidade deveria ser para todos,
+                        e criou o sistema de "corrente alternada (AC)", que é o que usamos até hoje nas tomadas da nossa
+                        casa. Ele imaginava um mundo com "energia sem fios", luz sem lâmpadas e máquinas movidas por
+                        ondas invisíveis.Mesmo com tantas invenções, Tesla morreu pobre e quase esquecido. Só muitos
+                        anos depois ele começou a ser reconhecido como um dos maiores inventores da história. Hoje, a
+                        marca "Tesla Motors", de carros elétricos, carrega seu nome em homenagem.Tesla foi o tipo de
+                        gênio que pensava 100 anos à frente do seu tempo — e graças a ele, o futuro chegou mais cedo.
+
+                    </p>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+
+    <div class="info-footer">
+        <p>
+            Fontes:
+            <a href="https://www.ebiografia.com/nikola_tesla/" target="_blank">ebiografia.com/nikola_tesla</a>
+            &nbsp;|&nbsp;
+        </p>
+        <p>Colaboradores:
+            <a href="https://www.instagram.com/studium_oficial/?utm_source=ig_web_button_share_sheet">Studium</a>
+        </p>
+        <p>© 2025 Linha do Tempo - Todos os direitos reservados.</p>
+        <a href=""></a>
+    </div>
+    <button class="btn-voltar" onclick="window.location.href='/teste/linhatemp2.html'">Voltar para página inicial</button>
+    <style>
+        body {
+            background: linear-gradient(135deg, #2c3e50 0%, #2980b9 100%);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #2c3e50;
+        }
+
+        table {
+            width: 100%;
+            max-width: 900px;
+            margin: 40px auto 0 auto;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: #f4f6fb;
+            box-shadow: 0 4px 24px rgba(44, 62, 80, 0.08);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .foto {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+        }
+
+        .foto img {
+            border-radius: 50%;
+            width: 320px;
+            height: 320px;
+            object-fit: cover;
+            box-shadow: 0 2px 12px rgba(44, 62, 80, 0.12);
+            background: #eaf1fb;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .foto img:hover {
+            transform: scale(1.08) rotate(-2deg);
+            box-shadow: 0 8px 32px rgba(44, 62, 80, 0.18);
+        }
+
+        .bloco {
+            background-color: #ffffff;
+            padding: 24px;
+            text-align: left;
+            width: 100%;
+            box-sizing: border-box;
+            border-radius: 18px;
+            margin-left: 0;
+            box-shadow: 0 2px 8px rgba(44, 62, 80, 0.06);
+        }
+
+        .coluna-direita {
+            vertical-align: top;
+            text-align: left;
+            padding: 32px 24px;
+            border-radius: 18px;
+            width: 60%;
+        }
+
+        .info-footer {
+            max-width: 900px;
+            margin: 24px auto 0 auto;
+            background: #eaf1fb;
+            border-radius: 12px;
+            padding: 16px 24px;
+            box-shadow: 0 2px 8px rgba(44, 62, 80, 0.04);
+            color: #34495e;
+            text-align: center;
+        }
+
+        .info-footer a {
+            color: #2980b9;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .btn-voltar {
+            display: block;
+            margin: 32px auto 0 auto;
+            padding: 12px 32px;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #fff;
+            background: linear-gradient(135deg, #2980b9 0%, #2c3e50 100%);
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(44, 62, 80, 0.12);
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .btn-voltar:hover {
+            background: linear-gradient(135deg, #2c3e50 0%, #2980b9 100%);
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 900px) {
+
+            table,
+            .info-footer {
+                max-width: 100%;
+            }
+
+            .coluna-direita,
+            .bloco {
+                width: 100%;
+                padding: 16px;
+            }
+
+            .foto img {
+                width: 220px;
+                height: 220px;
+            }
+        }
+
+        @media (max-width: 700px) {
+            table {
+                display: block;
+                width: 100%;
+            }
+
+            tr {
+                display: flex;
+                flex-direction: column;
+            }
+
+            td {
+                width: 100%;
+                display: block;
+            }
+
+            .foto img {
+                width: 160px;
+                height: 160px;
+            }
+
+            .info-footer {
+                padding: 12px 8px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .foto img {
+                width: 100px;
+                height: 100px;
+            }
+
+            .bloco,
+            .coluna-direita {
+                padding: 8px;
+            }
+
+            .info-footer {
+                font-size: 0.95em;
+            }
+        }
+    </style>
+
+    <script>
+        // Adiciona efeito de raios ao clicar na foto
+        document.addEventListener('DOMContentLoaded', function () {
+            const foto = document.querySelector('.foto img');
+            if (foto) {
+                foto.addEventListener('click', function () {
+                    // Cria elemento SVG de raios
+                    const raio = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                    raio.setAttribute('width', '340');
+                    raio.setAttribute('height', '340');
+                    raio.style.position = 'absolute';
+                    raio.style.left = foto.offsetLeft + 'px';
+                    raio.style.top = foto.offsetTop + 'px';
+                    raio.style.pointerEvents = 'none';
+                    raio.style.zIndex = '10';
+
+                    // Desenha um raio simples
+                    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                    path.setAttribute('d', 'M170 30 L190 120 L150 120 L170 210');
+                    path.setAttribute('stroke', '#2980b9');
+                    path.setAttribute('stroke-width', '8');
+                    path.setAttribute('fill', 'none');
+                    path.setAttribute('filter', 'drop-shadow(0 0 12px #2980b9)');
+                    raio.appendChild(path);
+
+                    // Adiciona SVG sobre a foto
+                    foto.parentElement.style.position = 'relative';
+                    foto.parentElement.appendChild(raio);
+
+                    // Remove o raio após 500ms
+                    setTimeout(() => {
+                        raio.remove();
+                    }, 500);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

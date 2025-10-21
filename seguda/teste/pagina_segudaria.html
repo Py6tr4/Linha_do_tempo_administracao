@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header><h1 align="center">Turismo trabalho(nem sei oque é)</h1></header>
+  
+    
+<div id="area-do-card">
+    <div class="coisina">
+        <div class="area-da-caixa">
+            <div class="caixa">
+                <img src="/frederick.webp" alt="">
+                <div class="overlay">
+                    <h3>Frederick Taylor</h3>
+                    <p>Pai da Administração Científica, também conhecida como Taylorismo, uma teoria focada em
+                         aumentar a eficiência e 
+                        a produtividade no trabalho através de métodos sistemáticos e científicos</p>
+                    <a href="#">olhe mais</a>
+                </div>
+            </div>
+             <div class="caixa">
+                <img src="/henri.webp" alt="">
+                <div class="overlay">
+                    <h3>Henri Fayol</h3>
+                    <p>foi um engenheiro e teórico da administração que definiu as funções e os princípios da administração</p>
+                    <a href="#">olhe mais</a>
+                </div>
+            </div>
+             <div class="caixa">
+                <img src="/henri_ganty.webp" alt="">
+                <div class="overlay">
+                    <h3>Henry Gantt</h3>
+                    <p>foi um engenheiro que revolucionou a administração ao humanizar a ciência taylorista, introduzindo o sistema de gratificação por produtividade (Task and Bonus) e criando o Diagrama de Gantt, uma ferramenta visual para planeamento e controlo de projetos</p>
+                    <a href="#">olhe mais</a>
+                </div>
+            </div>
+             <div class="caixa">
+                <img src="/peter.webp" alt="">
+                <div class="overlay">
+                    <h3>Peter Drucker</h3>
+                    <p>"pai da administração moderna" por sua influência na forma como as organizações são geridas, defendendo uma gestão focada em resultados, no cliente e no valor das pessoas. </p>
+                    <a href="#">olhe mais</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+*{
+margin: 0;
+padding: 0;
+font-family: 'Times New Roman', Times, serif;
+box-sizing: border-box;
+
+}
+body{
+    background: blue;
+    color: white;
+}
+.coisina{
+    padding: 10px 10%;
+}
+#area-do-card{
+    padding: 50px 0;
+
+}
+.area-da-caixa{
+    display: grid;
+grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+grid-gap:40px;
+margin-top: 50px;
+
+
+}
+.caixa{
+    border-radius: 10px;
+position: relative;
+overflow: hidden;
+box-shadow: 5px 5px 15px rgb(0, 0, 0,0.5);
+
+}
+.caixa img{
+    width: 100%;
+border-radius: 10px;
+display: block;
+transition: transform 0.5s;
+
+}
+.overlay{
+    height: 0;
+width: 100%;
+background: linear-gradient(transparent,black 58%);
+border-radius: 10px;
+position: absolute;
+left: 0;
+bottom: 0;
+overflow: hidden;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+padding: 0 40px;
+text-align: center;
+font-size: 10px;
+transition: height 0.5s;
+}
+.overlay h3{
+    font-weight: 500;
+margin-bottom: 5px;
+margin-top: 80%;
+font-family: serif;
+font-size: 30px;
+letter-spacing: 2px;
+}
+.overlay a{
+    margin-top: 10px;
+color: red;
+text-decoration: none;
+font-size: 10px;
+background: white;
+border-radius: 50px;
+text-align: center;
+padding: 5px 15px;
+
+}
+.caixaLhover img{
+    transform: scale(1.2);
+
+}
+.caixa:hover .overlay{
+    height: 100%;
+
+}
+
+</style>
+
+
+</body>
+</html>

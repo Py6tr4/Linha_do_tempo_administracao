@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta author content="Gabriel Cezar França de Freitas">
+
+
+    <title>Linha temporal ADM</title>
+    <style>
+        :root{
+            /* Paleta fiel ao linhatemp2: fundo muito escuro + destaque dourado */
+            --bg1: #071021;       /* fundo quase preto azulado */
+            --bg2: #0f2432;       /* azul profundo */
+            --card: #08121a;      /* cartão escuro */
+            --card-2: #0f2a36;    /* variação para gradiente dos cards */
+            --accent: #d8b24a;    /* dourado quente */
+            --accent-2: #c79a34;  /* dourado mais escuro para sombras */
+            --muted: #cfe6f7;     /* texto claro suave */
+            --muted-2: rgba(207,230,247,0.85);
+        }
+
+        /* Reset e corpo */
+        *{ box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Roboto, Arial, sans-serif;
+            background: radial-gradient(1200px 600px at 10% 10%, rgba(216,178,74,0.03), transparent),
+                        linear-gradient(180deg, var(--bg1) 0%, var(--bg2) 100%);
+            color: var(--muted);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Cabeçalho */
+        header h2{
+            margin: 22px auto 0;
+            max-width: 1100px;
+            padding: 12px 18px;
+            text-align: center;
+            background: linear-gradient(90deg, rgba(216,178,74,0.12), rgba(216,178,74,0.06));
+            color: #061018;
+            border-radius: 10px;
+            font-weight: 800;
+            box-shadow: 0 8px 24px rgba(2,6,10,0.5);
+            border: 1px solid rgba(216,178,74,0.06);
+        }
+
+        /* Container timeline — estilo linhatemp2 */
+        #timeline-container{
+            margin: 22px auto;
+            padding: 14px;
+            width: calc(100% - 40px);
+            max-width: 1100px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
+            background: linear-gradient(90deg, rgba(216,178,74,0.03), rgba(216,178,74,0.01));
+            border-radius: 12px;
+            box-shadow: 0 12px 40px rgba(3,8,16,0.6);
+            cursor: grab;
+            display: flex;
+            align-items: center;
+            border: 1px solid rgba(255,255,255,0.03);
+        }
+        #timeline-container:active{ cursor: grabbing; }
+
+        /* Linha interna com itens */
+        #timeline{
+            display: flex;
+            gap: 18px;
+            align-items: center;
+            padding: 6px 6px;
+            white-space: nowrap;
+        }
+
+        /* Itens da timeline */
+        #timeline a{
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-width: 150px;
+            padding: 10px 16px;
+            border-radius: 10px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+            color: var(--muted);
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: 0 8px 26px rgba(2,6,12,0.45);
+            transition: transform .16s ease, background .16s ease, box-shadow .16s ease;
+            border: 1px solid rgba(255,255,255,0.03);
+            backdrop-filter: blur(4px);
+        }
+
+        #timeline a::before{
+            content: "";
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: linear-gradient(180deg, var(--accent), var(--accent-2));
+            box-shadow: 0 4px 12px rgba(199,154,52,0.25);
+            margin-right: 8px;
+        }
+
+        #timeline a:hover{
+            transform: translateY(-5px);
+            background: linear-gradient(90deg, rgba(216,178,74,0.12), rgba(216,178,74,0.04));
+            color: #041016;
+            box-shadow: 0 18px 36px rgba(3,8,16,0.6);
+        }
+
+        /* Item ativo */
+        #timeline a.active{
+            background: linear-gradient(90deg, rgba(216,178,74,0.95), rgba(255,216,120,0.9));
+            color: #071018;
+            box-shadow: 0 20px 48px rgba(199,154,52,0.18);
+            transform: translateY(-6px) scale(1.02);
+        }
+
+        /* Scrollbar personalizada */
+        #timeline-container::-webkit-scrollbar{ height: 10px; }
+        #timeline-container::-webkit-scrollbar-thumb{
+            background: linear-gradient(180deg, rgba(216,178,74,0.22), rgba(199,154,52,0.18));
+            border-radius: 999px;
+        }
+        #timeline-container::-webkit-scrollbar-track{ background: transparent; }
+
+        /* Slides */
+        .slides-container{
+            width: 92%;
+            max-width: 1000px;
+            margin: 30px auto;
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            background: linear-gradient(180deg, var(--card), var(--card-2));
+            box-shadow: 0 22px 54px rgba(2,6,12,0.6);
+            padding: 18px;
+            color: var(--muted-2);
+            border: 1px solid rgba(255,255,255,0.03);
+        }
+
+        .slide{
+            display: none;
+            align-items: center;
+            gap: 20px;
+            padding: 12px;
+            transition: opacity .28s ease, transform .28s ease;
+        }
+
+        .slide.active{
+            display: flex;
+            flex-direction: row;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide img{
+            width: 380px;
+            max-width: 40%;
+            height: 260px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 2px solid rgba(255,255,255,0.03);
+            box-shadow: 0 12px 40px rgba(2,6,12,0.5);
+        }
+
+        .slide p{
+            margin: 0;
+            padding: 6px 12px;
+            line-height: 1.6;
+            color: var(--muted-2);
+            font-size: 15px;
+        }
+
+        .slide p a{
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 800;
+            margin-left: 6px;
+        }
+        .slide p a:hover{ text-decoration: underline; }
+
+        /* Controles */
+        .slide-controls{
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .slide-controls button{
+            padding: 10px 16px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.04);
+            background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+            color: var(--muted-2);
+            font-weight: 700;
+            cursor: pointer;
+            transition: background .12s ease, transform .12s ease, box-shadow .12s ease;
+        }
+
+        .slide-controls button:hover{
+            background: linear-gradient(90deg, rgba(216,178,74,0.12), rgba(216,178,74,0.04));
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(2,6,12,0.45);
+        }
+
+        /* Footer (override inline styles visually) */
+        footer{
+            max-width: 1000px;
+            margin: 36px auto 60px;
+            background: linear-gradient(90deg, rgba(216,178,74,0.06), rgba(216,178,74,0.02));
+            color: var(--muted-2);
+            border-radius: 10px;
+            padding: 12px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.03);
+        }
+        footer a{ color: var(--accent); font-weight: 700; text-decoration: none; }
+        footer a:hover{ text-decoration: underline; }
+
+        /* Responsividade */
+        @media (max-width: 900px){
+            .slide.active{ flex-direction: column; }
+            .slide img{ width: 100%; max-width: 100%; height: 220px; }
+            #timeline a{ min-width: 120px; padding: 10px 12px; font-size: 14px; }
+        }
+    </style>
+</head>
+
+<body style="background-color: lightblue;">
+    <header>
+        <h2 style="text-align: center; background-color: #81832a;"><u><strong>Linha temporal ADM 1925-2025</strong></u></h2>
+    </header>
+
+    <main>
+        <!-- Linha temporal horizontal arrastável -->
+        <section id="SelecaoDatas">
+            <div id="timeline-container">
+                <nav id="timeline">
+                    <a href="/teste/Steavejobs.html">Steve Jobs</a>
+                    <a href="/teste/billgates.html">Bill Gates</a>
+                    <a href="/teste/Jeffbezos.html">Jeff Bezos</a>
+                    <a href="/teste/Rihanna.html">Rihanna</a>
+                    <a href="/teste/brbeast.html">MrBeast</a>
+                    
+                    <!--Tem muito mais itens para adicionar-->
+                </nav><!-- -->
+            </div>
+        </section>
+
+        <!-- Slides -->
+        <section class="slides-container" style="background-color: rgba(14, 9, 9, 0.877);">
+            <div class="slide active">
+                <img src="/teste/photos/steve jobs.jpg" alt="Steve Jobs">
+                <p>Steve Jobs(1955-2011) foi o cofundador da Apple e revolucionou a tecnologia com o iPhone. <br> <a
+                        href="/teste/Steavejobs.html">Saiba mais!</a></p>
+            </div>
+            <div class="slide">
+                <img src="/teste/photos/licensed-image.webp" alt="Bill Gates">
+                <p>Bill Gates(1955-...) é o cofundador da Microsoft e filantropo global. <br><a
+                        href="/teste/billgates.html">Saiba mais!</a></p>
+            </div>
+            <div class="slide">
+                <img src="/teste/photos/jeff bezos.jpg" alt="Jeff Bezos">
+                <p>Jeff Bezos(1969-...) é o fundador da Amazon e um dos homens mais ricos do mundo. <br> <a
+                        href="/teste/Jeffbezos.html">Saiba mais!</a></p>
+            </div>
+
+            <div class="slide">
+                <img src="/teste/photos/rihanna.jpg" alt="Rihanna">
+                <p>Rihanna(1988-...) é uma cantora, empresária e ícone da moda mundial. <br><a
+                        href="/teste/rihanna.html">Saiba mais!</a></p>
+            </div>
+            <div class="slide">
+                <img src="/teste/photos/R1363_MrBeast_1feature.webp" alt="MrBeast">
+                <p>MrBeast(1998-...) é um famoso YouTuber conhecido por seus vídeos de desafios e filantropia. <br> <a
+                        href="/teste/brbeast.html">Saiba mais!</a></p>
+            </div>
+
+
+            <div class="slide-controls">
+                <button onclick="showSlide(-1)">Anterior</button>
+                <button onclick="showSlide(1)">Próximo</button>
+            </div>
+        </section>
+    </main>
+
+    <footer
+        style="width: 300px; height: auto; background-color: #81832a; margin: 40px auto 0 auto; position: relative; display: block; border-radius: 10px;">
+        <nav>
+            <p style="text-align: center;">&copy; 2025 Linha do Tempo - Todos os direitos reservados.</p>
+            <p style="text-align: center;">Colaboradores: 
+                <button id="studiumBtn" style="background:none;border:none;color:inherit;cursor:pointer;">
+                    <strong><i>Studium</i></strong>
+                </button>
+                <div id="studiumPopup" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;padding:20px;border-radius:10px;box-shadow:0 2px 8px #0005;z-index:1000;">
+                    <p><strong>Studium Portfólio</strong></p>
+                    <p>Colaborador especial do projeto.</p>
+                    <p>acesse o projeto: <a style="color: black;" href="/teste/portifolio_Studium/port.html" target="_blank"
+                        >Studium</a></p>
+                    <button onclick="document.getElementById('studiumPopup').style.display='none'">Fechar</button>
+                </div>
+            <div style="text-align: center;">
+                <button id="contactBtn" style="background:none;border:none;color:inherit;cursor:pointer;">
+                    <strong><i>Visite a linha do tempo de <a href="/teste/linhatemp2.html">1825-1925</a></i></strong>
+                </button>
+            </div>
+        </nav>
+    </footer>
+
+    <script>
+        // Arrastar timeline horizontal
+        const timelineContainer = document.getElementById('timeline-container');
+        let isDown = false;
+        let startX, scrollLeft;
+        timelineContainer.addEventListener('mousedown', (e) => {
+            isDown = true;
+            timelineContainer.classList.add('active');
+            startX = e.pageX - timelineContainer.offsetLeft;
+            scrollLeft = timelineContainer.scrollLeft;
+        });
+        timelineContainer.addEventListener('mouseleave', () => {
+            isDown = false;
+            timelineContainer.classList.remove('active');
+        });
+        timelineContainer.addEventListener('mouseup', () => {
+            isDown = false;
+            timelineContainer.classList.remove('active');
+        });
+        timelineContainer.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - timelineContainer.offsetLeft;
+            const walk = (x - startX) * 2; // velocidade
+            timelineContainer.scrollLeft = scrollLeft - walk;
+        });
+
+        // Slides
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + n + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+         document.getElementById('studiumBtn').onclick = function() {
+                        document.getElementById('studiumPopup').style.display = 'block';
+                    };
+    </script>
+</body>
+
+</html>

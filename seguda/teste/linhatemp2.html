@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linha do Tempo ADM 1847-1925</title>
+    <meta author content="Pyetro de Lima Lisboa Silva">
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            background: linear-gradient(135deg, #e3f2fd 0%, #f4f6f8 100%);
+            margin: 0;
+            padding: 0;
+            color: #222;
+        }
+
+        header {
+            background: #1976d2;
+            color: #fff;
+            padding: 2rem 1rem 1rem 1rem;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            background: #fff;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+            padding: 0.75rem 0;
+            border-radius: 0 0 8px 8px;
+        }
+
+        nav a {
+            color: #1976d2;
+            text-decoration: none;
+            font-weight: 700;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            background: #e3eaf2;
+            color: #1565c0;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 2rem auto;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+            padding: 2.5rem;
+        }
+
+        h1,
+        h2 {
+            margin-top: 0;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(90deg, #1976d2 60%, #42a5f5 100%);
+            color: #fff;
+            padding: 0.85rem 2rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 1.5rem;
+            font-size: 1.1rem;
+            box-shadow: 0 2px 8px rgba(25, 118, 210, 0.08);
+            border: none;
+            transition: background 0.2s, transform 0.2s;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: linear-gradient(90deg, #1565c0 60%, #1976d2 100%);
+            transform: translateY(-2px) scale(1.03);
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem 0;
+            background: #1976d2;
+            color: #fff;
+            margin-top: 2rem;
+            border-radius: 12px 12px 0 0;
+        }
+
+        .slide-nav-btn {
+            background: #1976d2;
+            color: #fff;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s, transform 0.2s;
+            box-shadow: 0 2px 8px rgba(25, 118, 210, 0.08);
+        }
+
+        .slide-nav-btn:not(.active):hover {
+            background: #42a5f5;
+            color: #1976d2;
+            transform: translateY(-2px) scale(1.03);
+        }
+
+        .slide-nav-btn.active {
+            background: #ffd600;
+            color: #1976d2;
+            box-shadow: 0 2px 12px #ffd60044;
+        }
+
+        @media (max-width: 600px) {
+            main {
+                padding: 1rem;
+            }
+
+            nav {
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Linha do Tempo ADM 1847-1925</h1>
+    </header>
+    <nav
+        style="margin-bottom: 2rem; background: #f5f8fd; border-radius: 8px; box-shadow: 0 1px 6px #0001; display: flex; justify-content: center; gap: 1.2rem; padding: 0.75rem 0;">
+        <button class="slide-nav-btn active" onclick="goToSlide(0)">Walt Disney(1901-1966)</button>
+        <button class="slide-nav-btn" onclick="goToSlide(1)">Henry Ford(1863-1947)</button>
+        <button class="slide-nav-btn" onclick="goToSlide(2)">Ray Kroc(1902-1984)</button>
+        <button class="slide-nav-btn" onclick="goToSlide(3)">Nikola Tesla(1856-1943)</button>
+        <button class="slide-nav-btn" onclick="goToSlide(4)">Alexander Graham Bell(1847-1922)</button>
+    </nav>
+    <main>
+        <h2 style="text-align:center; color:#1976d2; margin-bottom:1.2rem;">Bem-vindo à Linha do Tempo</h2>
+        <p style="text-align:center; font-size:1.15rem; color:#444; margin-bottom:2.2rem;">
+            Explore os marcos históricos e as contribuições de figuras influentes na administração e inovação.
+        </p>
+        <!-- Slides -->
+        <section class="slides-container"
+            style="background: linear-gradient(120deg, #1976d2 60%, #42a5f5 100%); border-radius: 16px; padding: 2.5rem 1.5rem; margin-top: 2rem; box-shadow: 0 4px 24px #0002;">
+            <div class="slide active" style="display:flex; flex-direction:column; align-items:center;">
+                <img src="/teste/photos/18krl/Walt Disney.jpg" alt="Walt Disney"
+                    style="max-width:220px; border-radius:12px; box-shadow:0 2px 12px #0003;">
+                <p style="color:#fff; font-size:1.12rem; margin-top:1.2rem; text-align:center;">
+                    <strong>Walt Disney (1901-1966)</strong><br>
+                    Pioneiro da animação e fundador da Disney.<br>
+                    <a href="/18krl!!/waltdisney.html" style="color:#ffd600; text-decoration:underline;">Saiba mais!</a>
+                </p>
+            </div>
+            <div class="slide" style="display:none; flex-direction:column; align-items:center;">
+                <img src="/teste/photos/18krl/Henry Ford.jpg" alt="Henry Ford"
+                    style="max-width:220px; border-radius:12px; box-shadow:0 2px 12px #0003;">
+                <p style="color:#fff; font-size:1.12rem; margin-top:1.2rem; text-align:center;">
+                    <strong>Henry Ford (1863-1947)</strong><br>
+                    Revolucionou a indústria automobilística com a produção em massa.<br>
+                    <a href="/18krl!!/henryford.html" style="color:#ffd600; text-decoration:underline;">Saiba mais!</a>
+                </p>
+            </div>
+            <div class="slide" style="display:none; flex-direction:column; align-items:center;">
+                <img src="/teste/photos/18krl/Ray Kroc.jpg" alt="Ray Kroc"
+                    style="max-width:220px; border-radius:12px; box-shadow:0 2px 12px #0003;">
+                <p style="color:#fff; font-size:1.12rem; margin-top:1.2rem; text-align:center;">
+                    <strong>Ray Kroc (1902-1984)</strong><br>
+                    Expandiu a rede de fast-food McDonald's globalmente.<br>
+                    <a href="/18krl!!/raykroc.html" style="color:#ffd600; text-decoration:underline;">Saiba mais!</a>
+                </p>
+            </div>
+            <div class="slide" style="display:none; flex-direction:column; align-items:center;">
+                <img src="/teste/photos/18krl/O melhor cientista do mundo.jpg" alt="Nikola Tesla"
+                    style="max-width:220px; border-radius:12px; box-shadow:0 2px 12px #0003;">
+                <p style="color:#fff; font-size:1.12rem; margin-top:1.2rem; text-align:center;">
+                    <strong>Nikola Tesla (1856-1943)</strong><br>
+                    Inventor e engenheiro elétrico, pioneiro da corrente alternada.<br>
+                    <a href="/18krl!!/nikolatesla.html" style="color:#ffd600; text-decoration:underline;">Saiba mais!</a>
+                </p>
+            </div>
+            <div class="slide" style="display:none; flex-direction:column; align-items:center;">
+                <img src="/teste/photos/18krl/Granham bell.jpg" alt="Graham Bell"
+                    style="max-width:220px; border-radius:12px; box-shadow:0 2px 12px #0003;">
+                <p style="color:#fff; font-size:1.12rem; margin-top:1.2rem; text-align:center;">
+                    <strong>Graham Bell (1847-1922)</strong><br>
+                    Inventor do telefone e pioneiro das telecomunicações.<br>
+                    <a href="/18krl!!/grahambell.html" style="color:#ffd600; text-decoration:underline;">Saiba mais!</a>
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <script>
+
+        const slides = document.querySelectorAll('.slide');
+        const navBtns = document.querySelectorAll('.slide-nav-btn');
+        let currentSlide = 0;
+
+        function updateSlides() {
+            slides.forEach((slide, idx) => {
+                slide.style.display = idx === currentSlide ? 'flex' : 'none';
+                slide.classList.toggle('active', idx === currentSlide);
+            });
+            navBtns.forEach((btn, idx) => {
+                btn.classList.toggle('active', idx === currentSlide);
+            });
+        }
+
+        window.showSlide = function (direction) {
+            currentSlide = (currentSlide + direction + slides.length) % slides.length;
+            updateSlides();
+        };
+
+        window.goToSlide = function (idx) {
+            currentSlide = idx;
+            updateSlides();
+        };
+
+
+        updateSlides();
+    </script>
+    <footer>
+        &copy; 2025 Linha do Tempo - Todos os direitos reservados.<br>
+        Colaboradores:
+        <button id="studiumBtn" style="background:none;border:none;color:#fff;cursor:pointer;font-weight:bold;">
+            <i>Studium</i>
+        </button>
+        <div id="studiumPopup"
+            style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;color:#222;padding:24px 32px;border-radius:12px;box-shadow:0 4px 24px #0002;z-index:1000;">
+            <p style="margin-top:0;"><strong>Studium Portfólio</strong></p>
+            <p>Colaborador especial do projeto.</p>
+            <p>Acesse o projeto: <a style="color: #1976d2; text-decoration: underline;"
+                    href="/teste/portifolio_Studium/port.html" target="_blank">Studium</a></p>
+            <button onclick="document.getElementById('studiumPopup').style.display='none'"
+                style="background:#003366;color:#fff;border:none;padding:0.5rem 1.2rem;border-radius:6px;cursor:pointer;margin-top:1rem;">Fechar</button>
+        </div>
+        <a href="/teste/index.html" class="btn"
+            style="display:block;max-width:340px;margin:2rem auto 0 auto;text-align:center;font-size:1.15rem;letter-spacing:0.02em;">
+            Visite a linha do tempo de 1925-2025
+        </a>
+    </footer>
+    <script>
+        document.getElementById('studiumBtn').onclick = function () {
+            document.getElementById('studiumPopup').style.display = 'block';
+        };
+    </script>
+</body>
+
+</html>
